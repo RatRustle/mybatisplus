@@ -7,7 +7,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-8&useSSL=false
     username: root
-    password: Gepoint
+    password: 123456
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #设置mybatis-plus的全局配置
+  global-config:
+    db-config:
+      #设置实体类所对应表的统一前缀
+      table-prefix: t_
+      #设置实体类主键统一的生成策略
+      id-type: none

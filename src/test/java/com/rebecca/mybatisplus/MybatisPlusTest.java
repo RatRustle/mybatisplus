@@ -22,12 +22,18 @@ public class MybatisPlusTest {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 查询所有
+     */
     @Test
     public void testSelectList(){
         List<User> users = userMapper.selectList(null);
         users.forEach(System.out::println);
     }
 
+    /**
+     * 新增
+     */
     @Test
     public void testInsert(){
         User user = new User();
@@ -39,6 +45,9 @@ public class MybatisPlusTest {
         System.out.println("id:"+user.getId());
     }
 
+    /**
+     * 删除
+     */
     @Test
     public void testDelete(){
         //通过id删除
@@ -56,6 +65,9 @@ public class MybatisPlusTest {
         System.out.println("result:"+i);
     }
 
+    /**
+     * 修改
+     */
     @Test
     public void testUpdate(){
         User user = new User();
@@ -66,14 +78,23 @@ public class MybatisPlusTest {
         System.out.println("result:"+i);
     }
 
+    /**
+     * 条件查询
+     */
     @Test
     public void testSelect(){
         //通过id查询信息
         //User user = userMapper.selectById(1L);
         //System.out.println(user);
         //根据多个id批量查询
-        List<Long> list = Arrays.asList(1L, 2L, 3L);
-        List<User> users = userMapper.selectBatchIds(list);
-        users.forEach(System.out::println);
+        //List<Long> list = Arrays.asList(1L, 2L, 3L);
+        //List<User> users = userMapper.selectBatchIds(list);
+        //根据map条件集合查询
+        //Map<String,Object> map = new HashMap<>();
+        //map.put("name","jack");
+        //map.put("age",18);
+        //List<User> users = userMapper.selectByMap(map);
+        Map<String, Object> map = userMapper.selectMapById(1L);
+        System.out.println(map);
     }
 }
