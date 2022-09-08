@@ -2,6 +2,7 @@ package com.rebecca.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.rebecca.mybatisplus.mapper.UserMapper;
@@ -136,5 +137,18 @@ public class WrapperTest {
         queryWrapper.like(StringUtils.isNotBlank(name), User::getName, name).ge(beginAge != null, User::getAge, beginAge).le(endAge != null, User::getAge, endAge);
         List<User> userList = userMapper.selectList(queryWrapper);
         userList.forEach(System.out::println);
+    }
+
+    /**
+     * test11
+     * LambdaUpdateWrapper
+     */
+    @Test
+    public void test11(){
+        LambdaUpdateWrapper<User> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.like(User::getName, "a").and(i -> i.gt(User::getAge, 20).or().isNull(User::getEmail));
+        updateWrapper.set(User::getName, "张三").set(User::getEmail, "123@qq.com");
+        int num = userMapper.update(null, updateWrapper);
+        System.out.println("num:" + num);
     }
 }

@@ -18,3 +18,7 @@ mybatis-plus:
       table-prefix: t_
       #设置实体类主键统一的生成策略
       id-type: none
+  #配置类型别名所对应的包
+  type-aliases-package: com.rebecca.mybatisplus.pojo
+  #扫描通用枚举的包
+  type-enums-package: com.rebecca.mybatisplus.enums
